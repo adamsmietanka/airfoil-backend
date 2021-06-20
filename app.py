@@ -31,5 +31,20 @@ def test():
     data = read('airfoils/0006.dat')
     return jsonify(data)
 
+
+@app.route('/airfoils', methods=['GET'])
+def airfoils():
+    airfoil_folder = r'airfoils'
+    airfoil_files = os.listdir(airfoil_folder)
+    airfoil_choices = [x[:-4] for x in airfoil_files]
+    return jsonify(airfoil_choices)
+
+
+@app.route('/airfoil', methods=['GET'])
+def get_airfoil():
+    airfoil = request.args.get('airfoil')
+    data = read('airfoils/' + airfoil + '.dat')
+    return jsonify(data)
+
 if __name__ == '__main__':
     app.run()
