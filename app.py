@@ -43,7 +43,7 @@ def airfoils():
 @app.route('/airfoil', methods=['GET'])
 def get_airfoil():
     airfoil = request.args.get('airfoil')
-    data = read('airfoils/' + airfoil + '.dat')
+    data = read('airfoils/' + str(airfoil) + '.dat')
     return jsonify(data)
 
 if __name__ == '__main__':
